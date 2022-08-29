@@ -20,24 +20,29 @@ let ex2 = {
     target: 24
 }
 
+function display(func) {
+    console.log(`${func.length * "*"}
+    ${func}
+    ${func.length * "*"}`);
+}
+
 //****Brute force solution O(n^2)****
 function twoSumsBruteForce(nums1, nums2, target) {
     console.log({ nums1, nums2, target });
-    for (let i = 0; i < nums1.length; i++) {
-        let first = nums1[i];
+    for (const num1 of nums1) {
         for (const num2 of nums2) {
-            let difference = Math.abs(target - first - i);
-            if ((num2 === difference)) {
+            if (num2 === target - num1) {
                 return {
-                    "nums1": first,
+                    "nums1": num1,
                     "nums2": num2,
-                    "difference": difference
+                    "difference": target - (num1 + num2)
                 };
             }
         }
 
     }
 }
+console.log("Brute force");
 console.log(twoSumsBruteForce(ex2.nums1, ex2.nums2, ex2.target));
 
 //****Improved version O(n)****
@@ -48,11 +53,17 @@ function twoSumsBetter(nums1, nums2, target) {
     let result = [];
     for (let i = 0; i < nums1.length; i++) {
         if (nums2.includes(Math.abs(target - nums1[i] - i))) {
-            result.push({ "nums1": nums1[i], "nums2": nums2.find(num => num === Math.abs(target - nums1[i] - i)) });
-            break;
+            return {
+                "nums1": nums1[i],
+                "nums2": nums2.find(num => num === Math.abs(target - nums1[i] - i)),
+                "difference": target - (nums1[i] + Math.abs(target - nums1[i] - i))
+            }
         }
     }
 
     console.log(result);
 }
-twoSumsBetter(ex1.nums1, ex1.nums2, ex1.target);
+
+console.log(`
+Better`);
+console.log(twoSumsBetter(ex1.nums1, ex1.nums2, ex1.target));
