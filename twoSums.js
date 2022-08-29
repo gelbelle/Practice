@@ -20,12 +20,6 @@ let ex2 = {
     target: 24
 }
 
-function display(func) {
-    console.log(`${func.length * "*"}
-    ${func}
-    ${func.length * "*"}`);
-}
-
 //****Brute force solution O(n^2)****
 function twoSumsBruteForce(nums1, nums2, target) {
     console.log({ nums1, nums2, target });
