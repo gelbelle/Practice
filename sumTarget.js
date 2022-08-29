@@ -33,19 +33,14 @@ function newNum(result, first, second) {
 
 function sums(nums, target) {
     let result = [];
-    //nums = nums.sort();
     for (let i = 0; i < nums.length - 1; i++) {
         let sum = nums[i] + nums[i + 1];
-        let end = nums[nums.length - i - 1];
         if (sum === target) {
             result.push(i, i + 1);
             break;
         }
     }
-    console.log(nums);
-    console.log(target);
-    console.log(result);
-
+    console.log(`The numbers at ${result} add up to the target value ${target}`);
 }
 
 sums(ex1.numbers, ex1.target);
