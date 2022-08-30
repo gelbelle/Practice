@@ -42,7 +42,7 @@ function twoSumsBruteForce(nums1, nums2, target) {
 
     }
 }
-console.log("Brute force");
+console.log("***** Brute force *****");
 console.log(twoSumsBruteForce(ex2.nums1, ex2.nums2, ex2.target));
 
 //****Improved version O(n)****
@@ -64,57 +64,58 @@ function twoSumsBetter(nums1, nums2, target) {
 }
 
 console.log(`
-Better`);
+***** Better *****`);
 console.log(twoSumsBetter(ex1.nums1, ex1.nums2, ex1.target));
 
 //****Matrix Solution****
 function sumMatrix(nums1, nums2, target) {
     nums1.sort((a, b) => a - b);
     nums2.sort((a, b) => a - b);
-    let mid = Math.round(nums1.length / 2);
-    console.log({ nums1, nums2, target, mid });
+    console.log({ nums1, nums2, target });
 
 
     let numbers = [];
 
     let sum = null;
+    let index1 = 0;
+    let index2 = nums2.length - 1;
 
     while (sum !== target && !isNaN(sum)) {
-        let index1 = 0;
-        let index2 = nums2.length - 1;
+
         let num1 = nums1.length > 2 ? nums1[index1] : nums1[0];
         let num2 = nums2.length > 2 ? nums2[index2] : nums2[0];
 
         sum = nums1[index1] + nums2[index2];
         console.log({ sum, num1, num2 });
-
+        numbers.push({
+            [nums1[index1] - nums2[index2]]: {
+                num1: nums1[index1],
+                num2: nums2[index2]
+            }
+        })
 
         if (sum > target) {
             console.log(`${sum} > ${target}`);
             nums1 = nums1.slice(0, index1);
+            nums2 = nums2.slice(index2);
+            console.log({ index1, index2 });
+            console.log({ nums1, nums2, num1, num2 });
+            if (index2 > 0) index2--;
+
+        } else {
+            console.log(`${sum} < ${target}`);
+            nums1 = nums1.slice(index1);
             nums2 = nums2.slice(0, index2);
             console.log({ index1, index2 });
             console.log({ nums1, nums2, num1, num2 });
-        } else {
-            console.log(`${sum} < ${target}`);
-
-            nums1 = nums1.slice(index1 + 1, nums1.length);
-            nums2 = nums2.slice(index2 + 1, nums2.length);
-            console.log({ index1, index2 });
-            console.log({ nums1, nums2, num1, num2 });
-
+            if (index1 !== nums1.length) index1++;
         }
-        numbers.push(nums1[index1], nums2[index2]);
     }
 
-    return {
-        "First number": numbers[0],
-        "Second number": numbers[1],
-        "Target": target
-    };
+    return numbers;
 
 }
 
 console.log(`
-Matrix Solution`);
+***** Matrix Solution *****`);
 console.log(sumMatrix(ex1.nums1, ex1.nums2, ex1.target));
