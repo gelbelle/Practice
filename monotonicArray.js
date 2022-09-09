@@ -26,4 +26,23 @@ function isMonotonic(nums) {
     return testArr.every(val => val === "less" || val === "same") || testArr.every(val => val === "more" || val === "same");
 }
 
-console.log(isMonotonic(ex1));
+console.log(isMonotonic(ex3));
+
+//***Solution from answers****
+function isMonotonic2(nums) {
+    let increasing = true;
+    let decreasing = true;
+    if (nums.length <= 2) return true;
+    for (let i = 0; i < nums.length - 1; i++) {
+        if (nums[i] < nums[i + 1]) {
+            decreasing = false;
+        } else if (nums[i] > nums[i + 1]) {
+            increasing = false;
+        } else {
+            continue;
+        }
+    }
+    return increasing || decreasing;
+}
+
+console.log(isMonotonic2(ex3));
