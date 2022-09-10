@@ -19,4 +19,28 @@ function runningSum(nums) {
 
 console.log(runningSum(ex1));
 
-// nums[i] = nums[i] + nums[i-1] is faster than nums[i] += nums[i-1] Storage virtually the same.
+//    Runtime: 114 ms, faster than 15.20% of JavaScript online submissions for Running Sum of 1d Array.
+//    Memory Usage: 41.7 MB, less than 99.28% of JavaScript online submissions for Running Sum of 1d Array.
+
+
+function altSolution(nums) {
+    let summed = 0;
+    return nums.map(num => summed += num);
+}
+
+console.log(altSolution(ex1));
+
+//Seems to be the same as the original solution in terms of runtime and memory. Better because it doesn't mutate the original array.
+
+function altSolution2(nums) {
+    let summed = [];
+    nums.reduce((prev, curr) => {
+        summed.push(prev += curr);
+        return prev;
+    }, 0);
+    return summed;
+}
+
+console.log(altSolution2(ex1));
+
+//Seems to be about the same as the others.
