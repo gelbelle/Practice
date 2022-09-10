@@ -12,6 +12,8 @@ let ex3 = [];
 
 function balancedTree(tree) {
     return tree.length === 0 ? true : false;
+
+
 }
 
 console.log(balancedTree(ex3));
