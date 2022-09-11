@@ -61,21 +61,17 @@ function fizzBuzz3(length) {
         7: "Jazz"
     };
     let counting = [];
-    let divisors = [3, 5, 7];
 
     for (let i = 1; i <= length; i++) {
         let ans = [];
-        // console.log(`Checking ${i}`);
-        divisors.forEach(num => {
-            // console.log({ num });
-            if (i % num === 0) {
-                //  console.log(dict[num]);
-                ans.push(dict[num]);
+        for (const [key, val] of Object.entries(dict)) {
+            if (i % key === 0) {
+                ans.push(val);
             }
-        });
+        }
+
         if (ans.length === 0) ans.push(i.toString());
 
-        // console.log({ ans });
         counting.push(ans.join(""));
     }
     return counting;
