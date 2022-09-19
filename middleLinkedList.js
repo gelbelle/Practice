@@ -66,7 +66,7 @@ function getRemainder(node, start) {
         //console.log(node[item], start);
         while (key === "val" && value !== start) {
             console.log("Deleting...");
-            delete(node[key]);
+            delete node[key];
         }
         if (key === "next" && value !== null) {
             return getRemainder(value, start);
