@@ -6,42 +6,7 @@
  * @return {array} - Returns the middle value of the node and the remainder of the linked list.
  */
 
-let ex1 = {
-    val: 1,
-    "next": {
-        val: 2,
-        "next": {
-            "val": 3,
-            "next": {
-                "val": 4,
-                "next": {
-                    "val": 5,
-                    "next": null
-                }
-            }
-        }
-    }
-}
 
-let ex2 = {
-    val: 1,
-    "next": {
-        val: 2,
-        "next": {
-            "val": 3,
-            "next": {
-                "val": 4,
-                "next": {
-                    "val": 5,
-                    "next": {
-                        "val": 6,
-                        "next": null
-                    }
-                }
-            }
-        }
-    }
-}
 
 function middleNode(head) {
     let arr = flatten(head);
@@ -63,16 +28,18 @@ function getRemainder(node, start) {
     //console.log(node);
     for (const [key, value] of Object.entries(node)) {
         console.log({ key, value });
-        //console.log(node[item], start);
         while (key === "val" && value !== start) {
+            console.log(node["val"], start);
+
             console.log("Deleting...");
             delete node[key];
+            break;
         }
         if (key === "next" && value !== null) {
             return getRemainder(value, start);
         }
     }
-    //console.log(node);
+    console.log(`Final ${node}`);
     return node;
 }
 
@@ -96,6 +63,43 @@ function flatten(obj) {
         }
     }
     return arr;
+}
+
+let ex1 = {
+    "val": 1,
+    "next": {
+        "val": 2,
+        "next": {
+            "val": 3,
+            "next": {
+                "val": 4,
+                "next": {
+                    "val": 5,
+                    "next": null
+                }
+            }
+        }
+    }
+}
+
+let ex2 = {
+    "val": 1,
+    "next": {
+        "val": 2,
+        "next": {
+            "val": 3,
+            "next": {
+                "val": 4,
+                "next": {
+                    "val": 5,
+                    "next": {
+                        "val": 6,
+                        "next": null
+                    }
+                }
+            }
+        }
+    }
 }
 
 console.log(middleNode(ex1));
