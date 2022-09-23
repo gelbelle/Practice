@@ -13,13 +13,7 @@ function canCreate(ransomNote, magazine) {
     [...ransomNote].forEach(char => {
         const idx = mag.findIndex(ltr => ltr === char);
         console.log({char, idx});
-        if(idx=== -1) {
-            console.log("not found");
-            create = false;
-        } else {
-            mag[idx] = 0;
-            console.log({mag});
-        }
+        (idx=== -1) ? create = false : mag[idx] = 0;
     })
     return create;
 }
