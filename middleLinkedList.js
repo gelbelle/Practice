@@ -1,45 +1,49 @@
 /**
  * This program takes in the head of a linked list and returns the middle node along with the remainder of the list. If there are two middle nodes it takes the second one. The length of the list is between 1 - 100 and the values could be 1 - 100 inclusive.
  * 
- * @param {array} head - The array containing the linked list.
+ * @param {node} head - The flatteneday containing the linked list.
  * 
- * @return {array} - Returns the middle value of the node and the remainder of the linked list.
+ * @return {int[]} - Returns the middle value of the node and the remainder of the linked list.
  */
 
 
 
 function middleNode(head) {
-    let arr = flatten(head);
+    console.log({ head });
+    let flattened = flatten(head);
     let mid;
-    if (arr.length % 2 !== 0) {
-        mid = Math.ceil(arr.length / 2);
+    if (flattened.length % 2 !== 0) {
+        mid = Math.ceil(flattened.length / 2);
     } else {
-        mid = Math.ceil((arr.length / 2) + 1);
+        mid = Math.ceil((flattened.length / 2) + 1);
     }
 
-    console.log(arr.slice(mid - 1));
+    //console.log(flattened.slice(mid - 1));
     return getRemainder(head, mid);
 }
 
-// TODO Figure out how to delete entries that aren't necessary
 function getRemainder(node, start) {
+    //node["val"] = start;
+   // console.log( {node} );
     console.log("Get Remainder");
     //console.log(typeof node);
     //console.log(node);
-    for (const [key, value] of Object.entries(node)) {
+    //node.next = start.next;
+    //console.log(`Node ${node}`);
+
+/*     for (const [key, value] of Object.entries(node)) {
         console.log({ key, value });
-        while (key === "val" && value !== start) {
+        if (key === "val" && value !== start) {
             console.log(node["val"], start);
 
             console.log("Deleting...");
-            delete node[key];
-            break;
+                node.next = start.next;
         }
         if (key === "next" && value !== null) {
             return getRemainder(value, start);
         }
-    }
-    console.log(`Final ${node}`);
+    } */
+    //console.log(`Final ${node}`);
     return node;
 }
 
@@ -53,18 +57,29 @@ function countItems(head, count = 0) {
 }
 
 function flatten(obj) {
-    let arr = [];
+    let flattened = [];
     //console.log(obj);
     for (const [, value] of Object.entries(obj)) {
         if (typeof value === "object" && value !== null) {
-            arr = [...arr, ...flatten(value)];
+            flattened = [...flattened, ...flatten(value)];
         } else if (value !== null) {
-            arr = [...arr, value];
+            flattened = [...flattened, value];
         }
     }
-    return arr;
+    return flattened;
 }
 
+//Video Solution from LeetCode
+function middleNode2(head) {
+    let middleNode = head;
+    let endNode = head;
+
+    while(endNode != null && endNode.next !== null) {
+        middleNode = middleNode.next;
+        endNode = endNode.next.next;
+    }
+    return middleNode;    
+}
 let ex1 = {
     "val": 1,
     "next": {
@@ -102,4 +117,5 @@ let ex2 = {
     }
 }
 
-console.log(middleNode(ex1));
+//console.log(middleNode(ex1));
+console.log(middleNode2(ex1));
