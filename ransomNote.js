@@ -12,7 +12,6 @@ function canCreate(ransomNote, magazine) {
     let mag = [...magazine];
     [...ransomNote].forEach(char => {
         const idx = mag.findIndex(ltr => ltr === char);
-        console.log({char, idx});
         (idx=== -1) ? create = false : mag[idx] = 0;
     })
     return create;
