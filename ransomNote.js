@@ -38,10 +38,40 @@ function canCreate2(ransomNote, magazine) {
     return true;
 }
 
+//Alternative from video
+function canCreate3(ransomNote, magazine) {
+    const letters = new Map();
+    [...magazine].forEach(char => {
+        letters.set(char, letters.get(char) +1 || 1);
+    });
+
+/* Unnecessary - code above from tutorial         
+if(letters.has(char)) {
+            letters.set(char, +1);
+            console.log(letters);
+        } else {
+            letters.set(char, 1);
+        } */
+/*     for(let char of ransomNote) {
+        if(letters.has(char)) {
+            letters.set(char, -1);
+            console.log(letters);
+        } else if(letters.get(char) === 0) {
+            return false;
+        } else {
+            return false;
+        }
+    } */
+    console.log(letters);
+    return true;
+}
+
 let ex1 = ["a", "b"]; //false
 let ex2 = ["aa", "ab"]; //false
 let ex3 = ["aa", "aab"]; //true
 
-console.log(canCreate(ex1[0], ex1[1]));
+//console.log(canCreate(ex1[0], ex1[1]));
 
-console.log(canCreate2(ex3[0], ex3[1]));
+//console.log(canCreate2(ex3[0], ex3[1]));
+
+console.log(canCreate3(ex2[0], ex2[1]));
