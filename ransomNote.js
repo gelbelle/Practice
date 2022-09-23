@@ -26,6 +26,15 @@ function canCreate(ransomNote, magazine) {
 
 //Alternative from discussion simplified - bigO better than 69%
 function canCreate2(ransomNote, magazine) {
+
+    //Doesn't work because false doesn't break the forEach
+  /*   [...ransomNote].forEach(ch => {
+        if(magazine.includes(ch)) {
+            magazine = magazine.replace(ch,"");
+        } else {
+            return false;
+        }
+    }) */
     for(let ch of ransomNote) {
         if(magazine.includes(ch)) {
             magazine = magazine.replace(ch, 0);
