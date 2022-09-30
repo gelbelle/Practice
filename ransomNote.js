@@ -52,7 +52,7 @@ if(letters.has(char)) {
         } else {
             letters.set(char, 1);
         } */
-/*     for(let char of ransomNote) {
+    for(let char of ransomNote) {
         if(letters.has(char)) {
             letters.set(char, -1);
             console.log(letters);
@@ -61,7 +61,7 @@ if(letters.has(char)) {
         } else {
             return false;
         }
-    } */
+    }
     console.log(letters);
     return true;
 }
