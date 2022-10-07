@@ -6,6 +6,7 @@
  * @return {bool} - Whether or not the double exists.
  */
 
+//Deliberately not using built in methods
 function checkDouble(arr) {
     for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < arr.length; j++) {
