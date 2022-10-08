@@ -58,7 +58,7 @@ moveZeroes(ex3);
     return nums
 };*/
 
-/* Created my own simplified version nearly identical to discussion, but generated on my own
+/* Created my own simplified version nearly identical to discussion, but generated on my own. Only works from end to beginning
 function moveZeroes(nums) {
     for (let i = 0; i < nums.length; i++) {
         if (nums[i] === 0) {
