@@ -18,56 +18,17 @@ function maxDepth(root) {
         console.log("*****Back to top*****");
         while (currNode !== null) {
             console.log("*****Not null*****");
-            console.log({ seen });
-            console.log({ currNode });
-            /*             if (seen.has(currNode)) {
-                            console.log("seen current node");
-                            console.log({ currNode });
-                            currDepth--;
-                        } */
             stack.push(currNode);
-            seen.add(currNode);
-            console.log({ stack });
-
             currNode = currNode.left;
-            currDepth++;
-
-            depth = Math.max(currDepth, depth);
-            console.log({ currDepth, depth });
-            console.log("Checking");
-            console.log({ currNode });
         }
 
         if (currNode === null && stack.length !== 0) {
             console.log("******Checking null*******");
-
-            console.log({ currDepth, depth });
-            console.log("Popping");
-            console.log(stack[stack.length - 1]);
-
             currNode = stack.pop().right;
-            if (seen.has(stack[stack.length - 1])) {
-                console.log("Seen parent node");
-                console.log(stack[stack.length - 1]);
-                currDepth--;
-            }
-            console.log("New current");
-            console.log({ currNode });
-
-            console.log({ stack });
-            console.log(`Length: ${stack.length}`);
-            console.log({ currDepth, depth });
-
-
         }
-        //Right checking for right of node, not node we've seen, but there's multiple null nodes. Won't work with multiple values the same either.
-
-        console.log({ currDepth, depth });
-
-        depth = Math.max(currDepth, depth);
-        console.log({ seen });
     }
     return depth;
+
 }
 
 let ex1 = { //3
