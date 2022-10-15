@@ -6,29 +6,52 @@
  * @return {int} - The deepest depth of the tree.
  */
 
-//TODO Trace out ex4 to ensure everything is in the right place. Returning 6 when it should be 4
+//TODO If statement for decrement. Should decrement when going back to parent (when parent seen). Right now checking parent and left seen, but fails when left is null. Maybe just when parent is seen?
 //Got outer while loop from GeeksforGeeks. I had that logic, but it was ending after one pass. The tutorial gave me the nested loops to use both conditions.
 function maxDepth(root) {
     let currNode = root;
-    let depth = 0;
     let currDepth = 0;
     let stack = [];
     let seen = new Set();
+
+    if (root === null) return 0;
+    let depth = 1;
+
+
     while (currNode !== null || stack.length > 0) {
         console.log("*****Back to top*****");
+        console.log({ currNode });
         while (currNode !== null) {
             console.log("*****Not null*****");
+            console.log(currNode.val);
             stack.push(currNode);
+            seen.add(currNode);
+            currDepth++;
+            seen.add(currNode);
             currNode = currNode.left;
+            console.log({ currDepth });
+            depth = Math.max(currDepth, depth);
+            console.log({ seen });
         }
 
         if (currNode === null && stack.length !== 0) {
-            console.log("******Checking null*******");
-            currNode = stack.pop().right;
+            console.log("*****Null*****");
+            let parent = stack.pop();
+            console.log(`Parent is`);
+            console.log(parent);
+            console.log("left");
+            console.log(parent.left);
+            currNode = parent.right;
+            if ((seen.has(parent) && parent.right === currNode)) currDepth--;
+
+
+
+            console.log("Next node to check");
+            console.log({ currNode });
+            console.log({ currDepth });
         }
     }
     return depth;
-
 }
 
 let ex1 = { //3
@@ -123,4 +146,4 @@ let ex4 = { //4
         "right": null
     }
 }
-console.log(`The depth is ${maxDepth(ex4)}`);
+console.log(`The depth is ${maxDepth(ex3)}`);
